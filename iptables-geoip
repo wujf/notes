@@ -1,0 +1,16 @@
+1. install packages:
+
+xtables-addons-common libtext-csv-xs-perl
+
+2. download
+sudo /usr/lib/xtables-addons/xt_geoip_dl
+
+3. build
+sudo mkdir /usr/share/xt_geoip
+sudo /usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip *.csv
+
+4. iptables
+iptables -A PREROUTING -t nat -m geoip -p tcp ! --destination-country CN -j SHADOWSOCKS
+
+Source:
+http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
